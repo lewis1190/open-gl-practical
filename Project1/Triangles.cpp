@@ -44,7 +44,8 @@ init(void)
 	//	{  0.90f, -0.85f }, {  0.90f,  0.90f }, { -0.85f,  0.90f }   // Triangle 2
 	//};
 
-	float vertices[] = {
+	// USED FOR TEST SHAPES
+	/* float vertices[] = {
 		0.5f, 0.5f, 0.0f, // Top Right
 		0.5f, -0.5f, 0.0f, // Bottom Right
 		-0.5f, -0.5f, 0.0f, // Bottom Left
@@ -52,18 +53,42 @@ init(void)
 		-1.0f, 0.5f, 0.0f, // Top Left2
 	};
 
-	//float vertices[] = {
-	//	1.0f, 1.0f, 0.0f,
-	//	1.0f, 0.0f, 0.0f,
-	//	0.0f, 0.0f, 0.0f,
-	//	0.0f, 1.0f, 0.0f
-	//};
-
 	unsigned int indices[] = {
 		0, 1, 3, // first triangle
 		1, 2, 3, // second triangle
 		2, 3, 4
+	};
+	*/
 
+	// NOUGHTS AND CROSSES VERTICES AND INDICES
+	float vertices[] = {
+		-0.5f,-0.9f, 0.0f,  // Left Side Bottom Left
+		-0.5f, 0.9f, 0.0f,  // Left Side Top Left
+		-0.3f, 0.9f, 0.0f,  // Left Side Top right
+		-0.3f, -0.9f, 0.0f, // Left Side Bottom right
+		0.5f, 0.9f, 0.0f,   // Right Side Top Right
+		0.5f, -0.9f, 0.0f,  // Right Side Bottom Right
+		0.3f, 0.9f, 0.0f,   // Right Side Top Left
+		0.3f, -0.9f, 0.0f,  // Right Side Bottom Left
+		-0.9f, -0.5f, 0.0f, // Bot Side Bottom Left
+		0.9f, -0.5f, 0.0f,  // Bot Side Bottom Right
+		0.9f, -0.3f, 0.0f,  // Bot Side Top Right
+		-0.9f, -0.3f, 0.0f, // Bot Side Top left
+		0.9f, 0.5f, 0.0f,   // Top Side Top Right
+		-0.9f, 0.5f, 0.0f,  // Top Side Top Left
+		-0.9f, 0.3f, 0.0f,  // Top Side Bottom Left
+		0.9f, 0.3f, 0.0f,   // Top Side Bottom Right
+	};
+
+	unsigned int indices[] = {
+		1, 2, 3,
+		0, 1, 3,
+		4, 5, 6,
+		5, 6, 7,
+		8, 9, 10,
+		8, 10, 11,
+		12, 13, 14,
+		12, 14, 15
 	};
 
 	glGenBuffers(NumBuffers, Buffers);
@@ -100,13 +125,14 @@ display(void)
 {
 	static const float black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// WIREFRAME MODE
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	glClearBufferfv(GL_COLOR, 0, black);
 
 	glBindVertexArray(VAOs[Triangles]);
 	//glDrawArrays(GL_TRIANGLES, 0, NumVertices);
-	glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 24, GL_UNSIGNED_INT, 0);
 }
 
 //----------------------------------------------------------------------------
